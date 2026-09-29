@@ -833,11 +833,12 @@
   </div>
 
   <!-- Chat Stream Area -->
-    <!-- 4-Quadrant Favorites Constellation in Chat Background -->
-    <div id="watermark-moto" class="chat-bg-watermark-moto" title="Motorbike: Triumph Tiger 1200 Explorer"></div>
-    <div id="watermark-hb" class="chat-bg-watermark-hb" title="Handball Team"></div>
-    <div id="watermark-nfl" class="chat-bg-watermark-nfl" title="NFL Team"></div>
-    <div id="watermark-bike" class="chat-bg-watermark-bike" title="Gravel Bike: Cube Nuroad C:62"></div>
+    <!-- 4-Quadrant Sports Constellation in Chat Background (Dynamic) -->
+    <div id="watermark-moto" class="chat-bg-watermark-moto" title="Motorbike: Adventure Tourer"></div>
+    <div id="watermark-hb" class="chat-bg-watermark-hb" title="Handball Arena"></div>
+    <div id="watermark-nfl" class="chat-bg-watermark-nfl" title="NFL Stadium"></div>
+    <div id="watermark-bike" class="chat-bg-watermark-bike" title="Bicycle: Carbon Gravel Bike"></div>
+
 
 
 
@@ -1009,7 +1010,7 @@ async function loadFavorites() {
     if (!res.ok) return;
     const p = await res.json();
     
-    // Handball: clean single key
+    // Handball
     const hb = (p.favorite_teams && p.favorite_teams.handball_team) || "THW Kiel";
     currentFavHandball = hb;
     const favHbEl = document.getElementById("fav-handball");
@@ -1018,7 +1019,7 @@ async function loadFavorites() {
     const dashHbSub = document.getElementById("dash-sub-handball");
     if (dashHbSub) dashHbSub.textContent = `${hb} & Matchdays`;
 
-    // NFL: clean single key
+    // NFL
     const nfl = (p.favorite_teams && p.favorite_teams.nfl_team) || "Green Bay Packers";
     currentFavNfl = nfl;
     const favNflEl = document.getElementById("fav-nfl");
@@ -1028,12 +1029,12 @@ async function loadFavorites() {
     if (dashNflSub) dashNflSub.textContent = `${nfl} & Standings`;
 
     // Moto
-    const moto = (p.motorbikes && (p.motorbikes.current_bike || p.motorbikes.primary_ride)) || "Triumph Tiger 1200";
+    const moto = (p.motorbikes && (p.motorbikes.current_bike || p.motorbikes.primary_ride)) || "Adventure Touring 1200";
     const favMotoEl = document.getElementById("fav-moto");
     if (favMotoEl) favMotoEl.textContent = moto;
 
     // Bicycle
-    const bike = (p.bicycles && (p.bicycles.gravel_bike || p.bicycles.current_bike || p.bicycles.gravel_road || p.bicycles.primary_bike)) || "Cube Nuroad C:62";
+    const bike = (p.bicycles && (p.bicycles.gravel_bike || p.bicycles.current_bike || p.bicycles.gravel_road || p.bicycles.primary_bike)) || "Carbon Gravel Bike";
     const favBikeEl = document.getElementById("fav-bike");
     if (favBikeEl) favBikeEl.textContent = bike;
 
@@ -1086,18 +1087,18 @@ function updateTeamBackgroundWatermarks(handballTeam, nflTeam, motoName, bikeNam
     nflWatermark.title = `NFL: ${nflTeam}`;
   }
 
-  // Motorbike: Triumph Tiger 1200 Explorer
+  // Motorbike Watermark
   const motoWatermark = document.getElementById("watermark-moto");
   if (motoWatermark) {
     motoWatermark.style.backgroundImage = `url("/logos/triumph_tiger_watermark.png")`;
-    motoWatermark.title = `Motorbike: ${motoName || 'Triumph Tiger 1200 Explorer'}`;
+    motoWatermark.title = `Motorbike: ${motoName || 'Adventure Touring 1200'}`;
   }
 
-  // Bicycle: Cube Nuroad C:62 Carbon Gravel Bike
+  // Bicycle Watermark
   const bikeWatermark = document.getElementById("watermark-bike");
   if (bikeWatermark) {
     bikeWatermark.style.backgroundImage = `url("/logos/cube_nuroad.svg")`;
-    bikeWatermark.title = `Bicycle: ${bikeName || 'Cube Nuroad C:62'}`;
+    bikeWatermark.title = `Bicycle: ${bikeName || 'Carbon Gravel Bike'}`;
   }
 
   // Dynamically update main pane ambient atmosphere to match team palette & mountain terrain
@@ -1113,6 +1114,7 @@ function updateTeamBackgroundWatermarks(handballTeam, nflTeam, motoName, bikeNam
     `;
   }
 }
+
 
 
 
